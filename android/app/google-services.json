@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "30285736960",
+    "firebase_url": "https://freshmart-app.firebaseio.com",
+    "project_id": "freshmart-app",
+    "storage_bucket": "freshmart-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30285736960:android:ceef538d6f3567c1727ce5",
+        "android_client_info": {
+          "package_name": "sukhada.com.freshmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30285736960-cokj1q40qjvfvmi1m9durmsfc691v79l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-FrdYowKw5Pz0Bj3imbogtqdI6soV8Ys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30285736960-cokj1q40qjvfvmi1m9durmsfc691v79l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
