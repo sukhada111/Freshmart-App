@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatefulWidget {
+class Category extends StatefulWidget {
+  static const String id = 'Category';
   @override
-  _MyAppState createState() => _MyAppState();
+  _CategoryState createState() => _CategoryState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _CategoryState extends State<Category> {
   List categ = [
     Categories(
         imageUrl: 'assets/images/veg5.jpg',
@@ -43,9 +44,8 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         appBar: AppBar(
-          title: Text('Freshmart',textAlign: TextAlign.center),
+          title: Text('Freshmart', textAlign: TextAlign.center),
           centerTitle: true,
-
         ),
         body: Container(
           padding: EdgeInsets.fromLTRB(5.0, 70.0, 5.0, 2.0),

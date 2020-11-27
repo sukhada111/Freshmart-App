@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(welcome_page());
 }
 class welcome_page extends StatelessWidget {
   @override
