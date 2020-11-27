@@ -26,6 +26,22 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                height: 100,
+                child: DrawerHeader(
+                  child: Text('Main Menu',style: TextStyle(color: Colors.white,fontSize: 20),),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: Text('Freshmart',textAlign: TextAlign.center),
           centerTitle: true,
