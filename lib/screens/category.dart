@@ -27,7 +27,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Freshmart'),
+          title: Text('Freshmart',textAlign: TextAlign.center),
+          centerTitle: true,
+
         ),
         body: Container(
           padding: EdgeInsets.fromLTRB(5.0, 70.0, 5.0, 2.0),
