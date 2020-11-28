@@ -88,18 +88,33 @@ class _CategoryState extends State<Category> {
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home,size: 25,),
+              icon: FlatButton
+                (
+                  child: Icon(Icons.home,size: 25,),
+                  onPressed: (){
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>welcome_page())
+                    );
+                  },
+              ),
                 title: Text('Home')
 
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.grid_on,size: 25,),
+              icon: FlatButton
+                (child: Icon(Icons.grid_on,size: 25,),
+                onPressed: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>Category())
+                  );
+                },
+              ),
                 title: Text('Categories')
 
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person,size: 25,),
-              title: Text('Profile')
+              title: Text('Profile'),
             ),
           ],
         ),

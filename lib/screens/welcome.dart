@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
 
 void main() {
-  runApp(Category());
+  runApp(MaterialApp(
+      home:welcome_page()
+  ),
+  );
 }
 class welcome_page extends StatelessWidget {
   static const String id= 'welcome_page';

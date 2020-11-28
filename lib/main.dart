@@ -6,7 +6,7 @@ import 'package:freshmart/screens/register.dart';
 import 'package:freshmart/screens/welcome.dart';
 import '';
 
-void main() => runApp(Category());
+void main() => runApp(MaterialApp(home: Freshmart(),));
 
 class Freshmart extends StatelessWidget {
   @override

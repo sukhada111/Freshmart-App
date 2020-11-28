@@ -25,6 +25,7 @@ class _RegisterState extends State<Register> {
       key: scaffoldkey,
       appBar: AppBar(
         title: Text('Freshmart'),
+        centerTitle: true,
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
