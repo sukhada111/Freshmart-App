@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/register.dart';
+import 'package:freshmart/screens/welcome.dart';
+import '';
 
-void main() => runApp(Freshmart());
+void main() => runApp(Category());
 
 class Freshmart extends StatelessWidget {
   @override
@@ -12,7 +14,7 @@ class Freshmart extends StatelessWidget {
     return MaterialApp(
       initialRoute: Register.id,
       routes: {
-//        WelcomeScreen.id: (context) => WelcomeScreen(),
+        welcome_page.id: (context) => welcome_page(),
         Login.id: (context) => Login(),
         Register.id: (context) => Register(),
         Category.id: (context) => Category(),

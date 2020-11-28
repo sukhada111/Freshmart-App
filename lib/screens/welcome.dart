@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
 
 void main() {
-  runApp(welcome_page());
+  runApp(Category());
 }
 class welcome_page extends StatelessWidget {
+  static const String id= 'welcome_page';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
