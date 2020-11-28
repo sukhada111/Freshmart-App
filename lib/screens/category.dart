@@ -36,16 +36,25 @@ class _CategoryState extends State<Category> {
               Container(
                 height: 100,
                 child: DrawerHeader(
-                  child: Text('Main Menu',style: TextStyle(color: Colors.white,fontSize: 22),),
+                  child: Text(
+                    'Main Menu',
+                    style: TextStyle(color: Colors.white, fontSize: 22),
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.blue,
                   ),
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.category,color: Colors.grey[700],),
-                title: Text('Shop By Category',style: TextStyle(color: Colors.grey[700], fontSize: 19),),
-                onTap: (){
+                leading: Icon(
+                  Icons.category,
+                  color: Colors.grey[700],
+                ),
+                title: Text(
+                  'Shop By Category',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                ),
+                onTap: () {
                   Navigator.pushNamed(
                     context,
                     Category.id,
@@ -53,9 +62,15 @@ class _CategoryState extends State<Category> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.info_outline,color: Colors.grey[700],),
-                title: Text('About Us',style: TextStyle(color: Colors.grey[700], fontSize: 19),),
-                onTap: (){
+                leading: Icon(
+                  Icons.info_outline,
+                  color: Colors.grey[700],
+                ),
+                title: Text(
+                  'About Us',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                ),
+                onTap: () {
                   Navigator.pushNamed(
                     context,
                     Category.id,
@@ -63,9 +78,15 @@ class _CategoryState extends State<Category> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.account_balance_wallet,color: Colors.grey[700],),
-                title: Text('Best Deals',style: TextStyle(color: Colors.grey[700], fontSize: 19),),
-                onTap: (){
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  color: Colors.grey[700],
+                ),
+                title: Text(
+                  'Best Deals',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                ),
+                onTap: () {
                   Navigator.pushNamed(
                     context,
                     Category.id,
@@ -73,9 +94,15 @@ class _CategoryState extends State<Category> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.logout,color: Colors.grey[700],),
-                title: Text('Logout',style: TextStyle(color: Colors.grey[700], fontSize: 19),),
-                onTap: (){
+                leading: Icon(
+                  Icons.lock,
+                  color: Colors.grey[700],
+                ),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                ),
+                onTap: () {
                   Navigator.pushNamed(
                     context,
                     welcome_page.id,
@@ -88,6 +115,7 @@ class _CategoryState extends State<Category> {
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
+<<<<<<< HEAD
               icon: FlatButton
                 (
                   child: Icon(Icons.home,size: 25,),
@@ -116,6 +144,25 @@ class _CategoryState extends State<Category> {
               icon: Icon(Icons.person,size: 25,),
               title: Text('Profile'),
             ),
+=======
+                icon: Icon(
+                  Icons.home,
+                  size: 25,
+                ),
+                title: Text('Home')),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.grid_on,
+                  size: 25,
+                ),
+                title: Text('Categories')),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                  size: 25,
+                ),
+                title: Text('Profile')),
+>>>>>>> 28189283a45457f687a92d308197420b692b7f67
           ],
         ),
         appBar: AppBar(
