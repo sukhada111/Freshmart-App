@@ -1,53 +1,58 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/screens/login.dart';
+import 'package:freshmart/screens/register.dart';
 
-void main() {
-  runApp(Category());
+class welcome_page extends StatefulWidget {
+  static const String id = 'welcome_page';
+
+  @override
+  _welcome_pageState createState() => _welcome_pageState();
 }
-class welcome_page extends StatelessWidget {
-  static const String id= 'welcome_page';
+
+class _welcome_pageState extends State<welcome_page> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: Text("Freshmart",style: TextStyle(color: Colors.white),),
+            title: Text(
+              "Freshmart",
+              style: TextStyle(color: Colors.white),
+            ),
             centerTitle: true,
           ),
           body: Center(
             child: Column(
               children: [
                 Container(
-                    padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
+                    padding: EdgeInsets.fromLTRB(100, 20, 100, 10),
                     child: Column(
                       children: [
                         CircleAvatar(
                           radius: 90,
                           backgroundColor: Colors.black,
                           child: CircleAvatar(
-                            backgroundImage: AssetImage("assets/images/logo-black.png"),
+                            backgroundImage:
+                                AssetImage("assets/images/logo-black.png"),
                             radius: 90,
                             backgroundColor: Colors.white,
-
                           ),
                         ),
-
                       ],
-                    )
-                ),
+                    )),
                 Container(
                   padding: EdgeInsets.fromLTRB(80, 40, 80, 20),
                   child: Column(
                     children: [
                       Container(
-                        padding:EdgeInsets.fromLTRB(0, 10, 0, 20) ,
-                        child :
-                        Text(
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
+                        child: Text(
                           "Welcome to Freshmart!",
-                          style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                          style:
+                              TextStyle(fontSize: 20, color: Colors.grey[700]),
                         ),
-
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,13 +63,16 @@ class welcome_page extends StatelessWidget {
                             child: RaisedButton(
                               color: Colors.blueAccent,
                               textColor: Colors.white,
-                              onPressed: (){},
-                              child: Text('Login', style: TextStyle(fontSize: 15),),
+                              onPressed: () {
+                                Navigator.pushNamed(context, Login.id);
+                              },
+                              child: Text(
+                                'Login',
+                                style: TextStyle(fontSize: 15),
+                              ),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.blueAccent)
-                              ),
-
+                                  side: BorderSide(color: Colors.blueAccent)),
                               padding: EdgeInsets.all(10),
                             ),
                           ),
@@ -78,14 +86,17 @@ class welcome_page extends StatelessWidget {
                             child: RaisedButton(
                               color: Colors.blueAccent,
                               textColor: Colors.white,
-                              onPressed: (){},
-                              child: Text('Register',style: TextStyle(fontSize: 15),),
+                              onPressed: () {
+                                Navigator.pushNamed(context, Register.id);
+                              },
+                              child: Text(
+                                'Register',
+                                style: TextStyle(fontSize: 15),
+                              ),
                               padding: EdgeInsets.all(10),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.blueAccent)
-                              ),
-
+                                  side: BorderSide(color: Colors.blueAccent)),
                             ),
                           )
                         ],
@@ -95,8 +106,7 @@ class welcome_page extends StatelessWidget {
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }
