@@ -115,7 +115,6 @@ class _CategoryState extends State<Category> {
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-<<<<<<< HEAD
               icon: FlatButton
                 (
                   child: Icon(Icons.home,size: 25,),
@@ -144,25 +143,7 @@ class _CategoryState extends State<Category> {
               icon: Icon(Icons.person,size: 25,),
               title: Text('Profile'),
             ),
-=======
-                icon: Icon(
-                  Icons.home,
-                  size: 25,
-                ),
-                title: Text('Home')),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.grid_on,
-                  size: 25,
-                ),
-                title: Text('Categories')),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
-                  size: 25,
-                ),
-                title: Text('Profile')),
->>>>>>> 28189283a45457f687a92d308197420b692b7f67
+
           ],
         ),
         appBar: AppBar(

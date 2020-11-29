@@ -4,19 +4,11 @@ import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/register.dart';
 
-<<<<<<< HEAD
-void main() {
-  runApp(MaterialApp(
-      home:welcome_page()
-  ),
-  );
-=======
 class welcome_page extends StatefulWidget {
   static const String id = 'welcome_page';
 
   @override
   _welcome_pageState createState() => _welcome_pageState();
->>>>>>> 28189283a45457f687a92d308197420b692b7f67
 }
 
 class _welcome_pageState extends State<welcome_page> {
