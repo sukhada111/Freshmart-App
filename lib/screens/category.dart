@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/welcome.dart';
+import 'package:freshmart/services/auth.dart';
 
 class Category extends StatefulWidget {
   static const String id = 'Category';
@@ -10,6 +12,7 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
+  final AuthService _auth = AuthService();
   List categ = [
     Categories(
         imageUrl: 'assets/images/veg5.jpg',
@@ -102,7 +105,8 @@ class _CategoryState extends State<Category> {
                   'Logout',
                   style: TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
-                onTap: () {
+                onTap: () async {
+                  await _auth.signOut();
                   Navigator.pushNamed(
                     context,
                     welcome_page.id,
