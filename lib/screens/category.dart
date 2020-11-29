@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/login.dart';
+import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
 
@@ -144,7 +145,15 @@ class _CategoryState extends State<Category> {
 
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person,size: 25,),
+              icon: FlatButton
+                (child: Icon(Icons.person,size: 25,),
+                  onPressed: (){
+                  Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=>MyProfile())
+                  );
+                  },
+
+              ),
               title: Text('Profile'),
             ),
 
@@ -154,7 +163,8 @@ class _CategoryState extends State<Category> {
           title: Text('Freshmart', textAlign: TextAlign.center),
           centerTitle: true,
         ),
-        body: Container(
+        body:
+        Container(
           padding: EdgeInsets.fromLTRB(5.0, 70.0, 5.0, 2.0),
           child: ListView.builder(
             padding: EdgeInsets.all(10),

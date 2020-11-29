@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/login.dart';
+import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/screens/register.dart';
 import 'package:freshmart/screens/welcome.dart';
 
@@ -29,6 +30,7 @@ class Freshmart extends StatelessWidget {
           Login.id: (context) => Login(),
           Register.id: (context) => Register(),
           Category.id: (context) => Category(),
+          MyProfile.id: (context) => MyProfile(),
         },
       ),
     );
