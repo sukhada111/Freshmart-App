@@ -2,7 +2,11 @@ import 'package:checkbox_formfield/checkbox_list_tile_formfield.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freshmart/services/auth.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class Register extends StatefulWidget {
   static const String id = 'Register';
@@ -13,7 +17,10 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   GlobalKey<FormState> _key = new GlobalKey();
   final scaffoldkey = new GlobalKey<ScaffoldState>();
-  String name, uname, email, pno, password;
+  final AuthService _auth = AuthService();
+  bool showSpinner = false;
+  String name, uname, email, password, address;
+  String pno;
   bool enabled = false;
   bool checked = false;
   bool _validate = false;
@@ -28,62 +35,65 @@ class _RegisterState extends State<Register> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: SingleChildScrollView(
-          padding: EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Text(
-                'SIGN UP',
-                style: TextStyle(fontSize: 30, color: Colors.blueGrey),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/register.jpg'),
-                  radius: 90,
-                  backgroundColor: Colors.white,
+      body: ModalProgressHUD(
+        inAsyncCall: showSpinner,
+        child: SingleChildScrollView(
+            padding: EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(
+                  'SIGN UP',
+                  style: TextStyle(fontSize: 30, color: Colors.blueGrey),
                 ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Form(
-                    key: _key,
-                    autovalidate: _validate,
-                    child: formUI(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/register.jpg'),
+                    radius: 90,
+                    backgroundColor: Colors.white,
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Already have an account?',
-                      style: TextStyle(
-                        fontSize: 18,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Form(
+                      key: _key,
+                      autovalidate: _validate,
+                      child: formUI(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'Already have an account?',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(16),
-                    child: GestureDetector(
-                      child: MaterialButton(
-                        color: Colors.blue,
-                        onPressed: () {
-                          Navigator.pushNamed(context, Login.id);
-                        },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: GestureDetector(
+                        child: MaterialButton(
+                          color: Colors.blue,
+                          onPressed: () {
+                            Navigator.pushNamed(context, Login.id);
+                          },
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          )),
+                  ],
+                ),
+              ],
+            )),
+      ),
     ));
   }
 
@@ -210,7 +220,7 @@ class _RegisterState extends State<Register> {
                   border: OutlineInputBorder()),
               validator: validateAddr,
               onSaved: (String value) {
-                name = value;
+                address = value;
               }),
         ),
         Padding(
@@ -241,8 +251,25 @@ class _RegisterState extends State<Register> {
                 child: MaterialButton(
                   padding: EdgeInsets.all(10.0),
                   color: Colors.blue,
-                  onPressed: () {
+                  onPressed: () async {
+                    setState(() {
+                      showSpinner = true;
+                    });
                     _sendToServer();
+
+                    try {
+                      final newUser = await _auth.registerWithEmailAndPassword(
+                          email, password, name, uname, pno, address);
+                      if (newUser != null) {
+                        Navigator.pushNamed(context, Category.id);
+                      }
+
+                      setState(() {
+                        showSpinner = false;
+                      });
+                    } catch (e) {
+                      print(e);
+                    }
                   },
                   child: Text(
                     'Sign up',

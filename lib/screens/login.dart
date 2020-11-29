@@ -1,6 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/services/auth.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class Login extends StatefulWidget {
   static const String id = 'Login';
@@ -13,11 +15,13 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   GlobalKey<FormState> _key = new GlobalKey();
   final scaffoldkey = new GlobalKey<ScaffoldState>();
-  String email, password, check;
+  final AuthService _auth = AuthService();
+  String email, password, check, error;
   bool enabled = false;
   bool checked = false;
   bool _validate = false;
   bool _passwordVisible = false;
+  bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,35 +33,38 @@ class _LoginState extends State<Login> {
             centerTitle: true,
             backgroundColor: Colors.blue,
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'LOGIN',
-                    style: TextStyle(fontSize: 30, color: Colors.blueGrey),
+          body: ModalProgressHUD(
+            inAsyncCall: showSpinner,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      'LOGIN',
+                      style: TextStyle(fontSize: 30, color: Colors.blueGrey),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/login.jpg'),
-                    radius: 90,
-                    backgroundColor: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage('assets/images/login.jpg'),
+                      radius: 90,
+                      backgroundColor: Colors.white,
+                    ),
                   ),
-                ),
-                Container(
-                  width: 400,
-                  margin: EdgeInsets.all(15.0),
-                  child: Form(
-                    key: _key,
-                    autovalidate: _validate,
-                    child: formUI(),
-                  ),
-                )
-              ],
+                  Container(
+                    width: 400,
+                    margin: EdgeInsets.all(15.0),
+                    child: Form(
+                      key: _key,
+                      autovalidate: _validate,
+                      child: formUI(),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ));
@@ -131,10 +138,22 @@ class _LoginState extends State<Login> {
           child: GestureDetector(
             child: MaterialButton(
               color: Colors.blue,
-              onPressed: () {
+              onPressed: () async {
                 check = _sendToServer();
+                setState(() {
+                  showSpinner = true;
+                });
                 if (check == 'ok') {
-                  Navigator.pushNamed(context, Category.id);
+                  dynamic result =
+                      await _auth.signInWithEmailAndPassword(email, password);
+                  if (result == null) {
+                    setState(() {
+                      error = 'Could not sign in with those credentials';
+                    });
+                  } else {
+                    showSpinner = false;
+                    Navigator.pushNamed(context, Category.id);
+                  }
                 }
               },
               child: Text(
