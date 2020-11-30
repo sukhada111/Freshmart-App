@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/myProfile.dart';
+import 'package:freshmart/screens/products.dart';
 import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
 
@@ -18,15 +19,18 @@ class _CategoryState extends State<Category> {
     Categories(
         imageUrl: 'assets/images/veg5.jpg',
         name: "Fruits and Vegetables",
-        line: "Get fresh fruits and vegetables at the best price!"),
+        line: "Get fresh fruits and vegetables at the best price!",
+        catt: 'fv'),
     Categories(
         imageUrl: "assets/images/fg2.jpg",
         name: "Oils and Food Grains",
-        line: "Get best quality oils and food grains!"),
+        line: "Get best quality oils and food grains!",
+        catt: 'og'),
     Categories(
         imageUrl: "assets/images/milk.jpg",
         name: "Dairy and Bakery",
-        line: "Get highly nutritious dairy and bakery products!")
+        line: "Get highly nutritious dairy and bakery products!",
+        catt: 'db')
   ];
 
   @override
@@ -120,51 +124,53 @@ class _CategoryState extends State<Category> {
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: FlatButton
-                (
-                  child: Icon(Icons.home,size: 25,),
-                  onPressed: (){
+                icon: FlatButton(
+                  child: Icon(
+                    Icons.home,
+                    size: 25,
+                  ),
+                  onPressed: () {
+//                    Navigator.push(
+//                        context,
+//                        MaterialPageRoute(
+//                            builder: (context) => ProductsPage(cat: 'fv')
+//                        )
+//                    );
+                  },
+                ),
+                title: Text('Home')),
+            BottomNavigationBarItem(
+                icon: FlatButton(
+                  child: Icon(
+                    Icons.grid_on,
+                    size: 25,
+                  ),
+                  onPressed: () {
                     Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>welcome_page())
-                    );
+                        MaterialPageRoute(builder: (context) => Category()));
                   },
-              ),
-                title: Text('Home')
-
-            ),
+                ),
+                title: Text('Categories')),
             BottomNavigationBarItem(
-              icon: FlatButton
-                (child: Icon(Icons.grid_on,size: 25,),
-                onPressed: (){
+              icon: FlatButton(
+                child: Icon(
+                  Icons.person,
+                  size: 25,
+                ),
+                onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context)=>Category())
-                  );
+                      MaterialPageRoute(builder: (context) => MyProfile()));
                 },
-              ),
-                title: Text('Categories')
-
-            ),
-            BottomNavigationBarItem(
-              icon: FlatButton
-                (child: Icon(Icons.person,size: 25,),
-                  onPressed: (){
-                  Navigator.push(context,
-                  MaterialPageRoute(builder: (context)=>MyProfile())
-                  );
-                  },
-
               ),
               title: Text('Profile'),
             ),
-
           ],
         ),
         appBar: AppBar(
           title: Text('Freshmart', textAlign: TextAlign.center),
           centerTitle: true,
         ),
-        body:
-        Container(
+        body: Container(
           padding: EdgeInsets.fromLTRB(5.0, 70.0, 5.0, 2.0),
           child: ListView.builder(
             padding: EdgeInsets.all(10),
@@ -173,27 +179,36 @@ class _CategoryState extends State<Category> {
               return SizedBox(
                 width: 500,
                 height: 140,
-                child: Card(
-                    child: Center(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.all(10.0),
-                    leading: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minWidth: 100,
-                        minHeight: 970,
-                        maxWidth: 500,
-                        maxHeight: 980,
+                child: GestureDetector(
+                  child: Card(
+                      child: Center(
+                    child: ListTile(
+                      contentPadding: EdgeInsets.all(10.0),
+                      leading: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minWidth: 100,
+                          minHeight: 970,
+                          maxWidth: 500,
+                          maxHeight: 980,
+                        ),
+                        child: Image.asset(categ[index].imageUrl,
+                            fit: BoxFit.cover),
                       ),
-                      child:
-                          Image.asset(categ[index].imageUrl, fit: BoxFit.cover),
+                      title: Text(
+                        categ[index].name,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      subtitle: Text(categ[index].line),
                     ),
-                    title: Text(
-                      categ[index].name,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    subtitle: Text(categ[index].line),
-                  ),
-                )),
+                  )),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ProductsPage(cat: categ[index].catt)));
+                  },
+                ),
               );
             },
           ),
@@ -207,6 +222,7 @@ class Categories {
   String imageUrl;
   String name;
   String line;
+  String catt;
 
-  Categories({this.imageUrl, this.name, this.line});
+  Categories({this.imageUrl, this.name, this.line, this.catt});
 }

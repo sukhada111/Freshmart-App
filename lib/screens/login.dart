@@ -139,10 +139,11 @@ class _LoginState extends State<Login> {
             child: MaterialButton(
               color: Colors.blue,
               onPressed: () async {
-                check = _sendToServer();
                 setState(() {
                   showSpinner = true;
                 });
+                check = _sendToServer();
+
                 if (check == 'ok') {
                   dynamic result =
                       await _auth.signInWithEmailAndPassword(email, password);
