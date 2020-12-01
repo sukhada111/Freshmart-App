@@ -18,89 +18,86 @@ class _MyProfileState extends State<MyProfile> {
     return MaterialApp(
       home: Scaffold(
           drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                Container(
-                  height: 100,
-                  child: DrawerHeader(
-                    child: Text(
-                      'Main Menu',
-                      style: TextStyle(color: Colors.white, fontSize: 22),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                    ),
+              child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                height: 100,
+                child: DrawerHeader(
+                  child: Text(
+                    'Main Menu',
+                    style: TextStyle(color: Colors.white, fontSize: 22),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
                   ),
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.category,
-                    color: Colors.grey[700],
-                  ),
-                  title: Text(
-                    'Shop By Category',
-                    style: TextStyle(color: Colors.grey[700], fontSize: 19),
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      Category.id,
-                    );
-                  },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.category,
+                  color: Colors.grey[700],
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.info_outline,
-                    color: Colors.grey[700],
-                  ),
-                  title: Text(
-                    'About Us',
-                    style: TextStyle(color: Colors.grey[700], fontSize: 19),
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      Category.id,
-                    );
-                  },
+                title: Text(
+                  'Shop By Category',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_balance_wallet,
-                    color: Colors.grey[700],
-                  ),
-                  title: Text(
-                    'Best Deals',
-                    style: TextStyle(color: Colors.grey[700], fontSize: 19),
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      Category.id,
-                    );
-                  },
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    Category.id,
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.info_outline,
+                  color: Colors.grey[700],
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.lock,
-                    color: Colors.grey[700],
-                  ),
-                  title: Text(
-                    'Logout',
-                    style: TextStyle(color: Colors.grey[700], fontSize: 19),
-                  ),
-                  onTap: () async {
-                    await _auth.signOut();
-                    Navigator.pushNamed(
-                      context,
-                      welcome_page.id,
-                    );
-                  },
+                title: Text(
+                  'About Us',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
-              ],
-            ),
-          ),
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    Category.id,
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.account_balance_wallet,
+                  color: Colors.grey[700],
+                ),
+                title: Text(
+                  'Best Deals',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    Category.id,
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.lock,
+                  color: Colors.grey[700],
+                ),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                ),
+                onTap: () async {
+                  await _auth.signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => welcome_page()));
+                },
+              ),
+            ],
+          )),
           bottomNavigationBar: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(

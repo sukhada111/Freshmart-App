@@ -24,7 +24,6 @@ class Freshmart extends StatelessWidget {
     return StreamProvider<Users>.value(
       value: AuthService().user,
       child: MaterialApp(
-        home: Wrapper(),
         routes: {
           welcome_page.id: (context) => welcome_page(),
           Login.id: (context) => Login(),
@@ -32,6 +31,7 @@ class Freshmart extends StatelessWidget {
           Category.id: (context) => Category(),
           MyProfile.id: (context) => MyProfile(),
         },
+        home: Wrapper(),
       ),
     );
   }

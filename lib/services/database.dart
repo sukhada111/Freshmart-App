@@ -50,6 +50,7 @@ class ProductService {
   List<Product> _prodListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Product(
+          id: doc.id,
           name: doc.data()['Name'] ?? '',
           seller: doc.data()['Seller'] ?? '',
           price: doc.data()['Price'] ?? 0,

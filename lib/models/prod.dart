@@ -1,4 +1,5 @@
 class Product {
+  final String id;
   final String name;
   final String seller;
   final int price;
@@ -7,5 +8,11 @@ class Product {
   final String cat;
 
   Product(
-      {this.name, this.seller, this.price, this.quantity, this.cat, this.img});
+      {this.id,
+      this.name,
+      this.seller,
+      this.price,
+      this.quantity,
+      this.cat,
+      this.img});
 }
