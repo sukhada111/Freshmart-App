@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/models/user.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/screens/singleProduct.dart';
 import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
 import 'package:freshmart/services/database.dart';
@@ -90,7 +91,7 @@ class _MyProfileState extends State<MyProfile> {
                         onTap: () {
                           Navigator.pushNamed(
                             context,
-                            Category.id,
+                            SingleProduct.id,
                           );
                         },
                       ),

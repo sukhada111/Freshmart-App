@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:freshmart/screens/BestDeals.dart';
 import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/screens/register.dart';
+import 'package:freshmart/screens/singleProduct.dart';
 import 'package:freshmart/screens/welcome.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -30,6 +32,10 @@ class Freshmart extends StatelessWidget {
           Register.id: (context) => Register(),
           Category.id: (context) => Category(),
           MyProfile.id: (context) => MyProfile(),
+          SingleProduct.id: (context) => SingleProduct(),
+          BestDeals.id: (context) => BestDeals(),
+
+
         },
         home: Wrapper(),
       ),
