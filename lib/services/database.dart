@@ -23,21 +23,21 @@ class DatabaseService {
   }
 
 // user data from snapshots
-//  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-//    return UserData(
-//        uid: uid,
-//        name: snapshot.data['name'],
-//        uname: snapshot.data['username'],
-//        pno: snapshot.data['contact']
-//        addr: snapshot.data['address'],
-//        email: snapshot.data['email']
-//    );
-//  }
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+        uid: uid,
+        addr: snapshot.data()['address'],
+        pno:snapshot.data()['contact'],
+        email: snapshot.data()['email'],
+        name: snapshot.data()['name'],
+        uname: snapshot.data()['username'],
+    );
+  }
 
-//  // get user doc stream
-//  Stream<UserData> get userData {
-//    return userscoll.doc(uid).snapshots().map(_userDataFromSnapshot);
-//  }
+  // get user doc stream
+  Stream<UserData> get userData {
+    return userscoll.doc(uid).snapshots().map(_userDataFromSnapshot);
+  }
 
 }
 
@@ -63,4 +63,7 @@ class ProductService {
   Stream<List<Product>> get products {
     return productscoll.snapshots().map(_prodListFromSnapshot);
   }
+
+
+
 }
