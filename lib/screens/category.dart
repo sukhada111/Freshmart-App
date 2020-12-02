@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:freshmart/screens/aboutUs.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/screens/products.dart';
@@ -82,7 +81,7 @@ class _CategoryState extends State<Category> {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    AboutUs.id,
+                    Category.id,
                   );
                 },
               ),

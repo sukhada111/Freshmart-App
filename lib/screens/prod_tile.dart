@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:freshmart/models/prod.dart';
 import 'package:flutter/material.dart';
-import 'package:freshmart/screens/singleprod.dart';
+import 'package:freshmart/screens/singleProduct.dart';
 
 class ProdTile extends StatelessWidget {
   final Product prod;
@@ -48,7 +48,7 @@ class ProdTile extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        SingleProd(prod: prod, prod_id: prod.id)));
+                        SingleProduct(prod: prod, prod_id: prod.id)));
           },
         ),
       );
