@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/BestDeals.dart';
+import 'package:freshmart/screens/aboutUs.dart';
 import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/myProfile.dart';
@@ -34,6 +35,9 @@ class Freshmart extends StatelessWidget {
           MyProfile.id: (context) => MyProfile(),
           SingleProduct.id: (context) => SingleProduct(),
           BestDeals.id: (context) => BestDeals(),
+          AboutUs.id: (context) => AboutUs(),
+
+
 
 
         },
