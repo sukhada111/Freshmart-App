@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/models/user.dart';
+import 'package:freshmart/screens/BestDeals.dart';
 import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/singleProduct.dart';
 import 'package:freshmart/screens/welcome.dart';
@@ -72,10 +73,10 @@ class _MyProfileState extends State<MyProfile> {
                               TextStyle(color: Colors.grey[700], fontSize: 19),
                         ),
                         onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            Category.id,
-                          );
+//                          Navigator.pushNamed(
+//                            context,
+//                            SingleProduct.id,
+//                          );
                         },
                       ),
                       ListTile(
@@ -91,7 +92,7 @@ class _MyProfileState extends State<MyProfile> {
                         onTap: () {
                           Navigator.pushNamed(
                             context,
-                            SingleProduct.id,
+                            BestDeals.id,
                           );
                         },
                       ),
