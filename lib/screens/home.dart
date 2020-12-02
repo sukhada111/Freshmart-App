@@ -1,41 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:freshmart/screens/BestDeals.dart';
-import 'package:freshmart/screens/aboutUs.dart';
-import 'package:freshmart/screens/home.dart';
-import 'package:freshmart/screens/login.dart';
-import 'package:freshmart/screens/myProfile.dart';
-import 'package:freshmart/screens/products.dart';
+import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
 
-class Category extends StatefulWidget {
-  static const String id = 'Category';
+class Home extends StatefulWidget {
+  static const String id = 'Home';
+
   @override
-  _CategoryState createState() => _CategoryState();
+  _HomeState createState() => _HomeState();
 }
 
-class _CategoryState extends State<Category> {
+class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
-  List categ = [
-    Categories(
-        imageUrl: 'assets/images/veg5.jpg',
-        name: "Fruits and Vegetables",
-        line: "Get fresh fruits and vegetables at the best price!",
-        catt: 'fv'),
-    Categories(
-        imageUrl: "assets/images/fg2.jpg",
-        name: "Oils and Food Grains",
-        line: "Get best quality oils and food grains!",
-        catt: 'og'),
-    Categories(
-        imageUrl: "assets/images/milk.jpg",
-        name: "Dairy and Bakery",
-        line: "Get highly nutritious dairy and bakery products!",
-        catt: 'db')
-  ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -63,7 +40,8 @@ class _CategoryState extends State<Category> {
                 ),
                 title: Text(
                   'Shop By Category',
-                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                  style:
+                  TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
                 onTap: () {
                   Navigator.pushNamed(
@@ -79,12 +57,13 @@ class _CategoryState extends State<Category> {
                 ),
                 title: Text(
                   'About Us',
-                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                  style:
+                  TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    AboutUs.id,
+                    Category.id,
                   );
                 },
               ),
@@ -95,12 +74,13 @@ class _CategoryState extends State<Category> {
                 ),
                 title: Text(
                   'Best Deals',
-                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                  style:
+                  TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    BestDeals.id,
+                    Category.id,
                   );
                 },
               ),
@@ -111,7 +91,8 @@ class _CategoryState extends State<Category> {
                 ),
                 title: Text(
                   'Logout',
-                  style: TextStyle(color: Colors.grey[700], fontSize: 19),
+                  style:
+                  TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
                 onTap: () async {
                   await _auth.signOut();
@@ -133,8 +114,10 @@ class _CategoryState extends State<Category> {
                     size: 25,
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+//                      Navigator.push(
+//                          context,
+//                          MaterialPageRoute(
+//                              builder: (context) => welcome_page()));
                   },
                 ),
                 title: Text('Home')),
@@ -145,21 +128,17 @@ class _CategoryState extends State<Category> {
                     size: 25,
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Category()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Category()));
                   },
                 ),
                 title: Text('Categories')),
             BottomNavigationBarItem(
-              icon: FlatButton(
-                child: Icon(
-                  Icons.person,
-                  size: 25,
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyProfile()));
-                },
+              icon: Icon(
+                Icons.person,
+                size: 25,
               ),
               title: Text('Profile'),
             ),
@@ -168,56 +147,61 @@ class _CategoryState extends State<Category> {
         appBar: AppBar(
           title: Text('Freshmart', textAlign: TextAlign.center),
           centerTitle: true,
+          actions: [
+            IconButton(icon: Icon(Icons.shopping_cart),
+              onPressed: (){},
+              color: Colors.white,
+            )
+          ],
         ),
-        body: Container(
-          padding: EdgeInsets.fromLTRB(5.0, 70.0, 5.0, 2.0),
-          child: ListView.builder(
-            padding: EdgeInsets.all(10),
-            itemCount: categ.length,
-            itemBuilder: (context, index) {
-              return SizedBox(
-                width: 500,
-                height: 140,
-                child: GestureDetector(
-                  child: Card(
-                      child: Center(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.all(10.0),
-                      leading: Container(
-                        height: 120,
-                        width: 100,
-                        child: Image.asset(categ[index].imageUrl,
-                            fit: BoxFit.cover),
-                      ),
-                      title: Text(
-                        categ[index].name,
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      subtitle: Text(categ[index].line),
-                    ),
-                  )),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ProductsPage(cat: categ[index].catt)));
-                  },
+
+        body:ListView(
+          children: [
+            Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+
+              Container(
+                height: 200,
+                child: Image(image: AssetImage("assets/images/headbanner.png"),
+                  fit: BoxFit.fill,
                 ),
-              );
-            },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 150,
+                child: Image(image: AssetImage("assets/images/discounts.jpg"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              GestureDetector(
+                child:Container(
+                  height: 150,
+                  child: Image(image: AssetImage("assets/images/category.png"),
+                    fit: BoxFit.fill,
+                  ),
+                ) ,
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    Category.id,
+                  );
+                },
+              ),
+
+
+            ],
           ),
-        ),
+            ),
+          ],
+          ),
+
+        
       ),
+      
     );
   }
-}
-
-class Categories {
-  String imageUrl;
-  String name;
-  String line;
-  String catt;
-
-  Categories({this.imageUrl, this.name, this.line, this.catt});
 }

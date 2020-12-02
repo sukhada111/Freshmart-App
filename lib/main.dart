@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:freshmart/screens/BestDeals.dart';
 import 'package:freshmart/screens/aboutUs.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/screens/home.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/screens/register.dart';
@@ -29,6 +30,7 @@ class Freshmart extends StatelessWidget {
       child: MaterialApp(
         routes: {
           welcome_page.id: (context) => welcome_page(),
+          Home.id: (context) => Home(),
           Login.id: (context) => Login(),
           Register.id: (context) => Register(),
           Category.id: (context) => Category(),

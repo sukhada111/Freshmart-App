@@ -18,9 +18,9 @@ class ProdTile extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
             child: ListTile(
               contentPadding: EdgeInsets.fromLTRB(10, 5.0, 3.0, 5.0),
-              leading: SizedBox(
-                width: 120,
-                height: 300,
+              leading: Container(
+                width: 80,
+                height: 80,
                 child: Image.asset(
                   'assets/images/${prod.img}',
                   fit: BoxFit.cover,
