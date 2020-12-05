@@ -4,6 +4,7 @@ import 'package:freshmart/models/prod.dart';
 import 'package:freshmart/screens/BestDeals.dart';
 import 'package:freshmart/screens/aboutUs.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/screens/checkOut.dart';
 import 'package:freshmart/screens/home.dart';
 import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/services/auth.dart';
@@ -200,10 +201,22 @@ class _CartState extends State<Cart> {
                       ),
                     ),
                   ),
+
                 ),
+
               );
+
             }),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => checkOut()));
+
+          },
+          backgroundColor: Colors.redAccent,
+          child: const Icon(Icons.arrow_right,color: Colors.white,),
       ),
+    )
     );
   }
 }

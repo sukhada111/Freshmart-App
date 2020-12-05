@@ -150,72 +150,74 @@ class _BestDealsState extends State<BestDeals> {
               )
             ],
           ),
-          body: Container(
-            padding: EdgeInsets.all(10),
-            width: 400,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    child: Text(
-                      "Our Best Deals",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.grey[800],
+          body: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              width: 400,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      child: Text(
+                        "Our Best Deals",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.grey[800],
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                  width: 420,
-                  height: 150,
-                  child: Image(
-                    image: AssetImage("assets/images/fifoff.jpg"),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    width: 420,
+                    height: 150,
+                    child: Image(
+                      image: AssetImage("assets/images/fifoff.jpg"),
+                    ),
                   ),
-                ),
-                Container(
-                  width: 400,
-                  height: 200,
-                  child: Image(
-                    image: AssetImage("assets/images/b2g2.jpg"),
-                  ),
-                ),
-                Container(
-                  width: 400,
-                  height: 100,
-                  child: Image(
-                    image: AssetImage("assets/images/bf.jpeg"),
+                  Container(
                     width: 400,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                  height: 30,
-                ),
-                ButtonTheme(
-                  minWidth: 300,
-                  height: 50,
-                  child: RaisedButton(
-                    color: Colors.redAccent,
-                    textColor: Colors.white,
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Category()));
-                    },
-                    child: Text(
-                      'SHOP NOW',
-                      style: TextStyle(fontSize: 15),
+                    height: 200,
+                    child: Image(
+                      image: AssetImage("assets/images/b2g2.jpg"),
                     ),
-                    padding: EdgeInsets.all(10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.redAccent)),
                   ),
-                )
-              ],
+                  Container(
+                    width: 400,
+                    height: 100,
+                    child: Image(
+                      image: AssetImage("assets/images/bf.jpeg"),
+                      width: 400,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                    height: 30,
+                  ),
+                  ButtonTheme(
+                    minWidth: 300,
+                    height: 50,
+                    child: RaisedButton(
+                      color: Colors.redAccent,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Category()));
+                      },
+                      child: Text(
+                        'SHOP NOW',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.redAccent)),
+                    ),
+                  )
+                ],
+              ),
             ),
           )),
     );
