@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/BestDeals.dart';
+import 'package:freshmart/screens/aboutUs.dart';
+import 'package:freshmart/screens/cart.dart';
 import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/prod_list.dart';
 import 'package:freshmart/services/auth.dart';
@@ -7,6 +9,7 @@ import 'package:freshmart/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:freshmart/models/prod.dart';
 import 'package:freshmart/screens/welcome.dart';
+import 'globals.dart' as globals;
 
 class ProductsPage extends StatelessWidget {
   final String cat;
@@ -59,7 +62,7 @@ class ProductsPage extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Category()));
+                      MaterialPageRoute(builder: (context) => AboutUs()));
                 },
               ),
               ListTile(
@@ -101,12 +104,43 @@ class ProductsPage extends StatelessWidget {
           backgroundColor: Colors.blue,
           elevation: 0.0,
           actions: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.shopping_cart),
-              label: Text(''),
-              onPressed: () {
-//                await _auth.signOut();
-              },
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+              child: GestureDetector(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Icon(
+                      Icons.shopping_cart,
+                      size: 36.0,
+                    ),
+                    if (globals.cartList.length > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 2.0),
+                        child: CircleAvatar(
+                          radius: 8.0,
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          child: Text(
+                            globals.cartList.length.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                onTap: () {
+                  if (globals.cartList.isNotEmpty)
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Cart(globals.cartList),
+                      ),
+                    );
+                },
+              ),
             ),
           ],
         ),

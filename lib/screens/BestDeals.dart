@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:freshmart/screens/aboutUs.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/screens/home.dart';
 import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
 
@@ -111,10 +113,8 @@ class _BestDealsState extends State<BestDeals> {
                       size: 25,
                     ),
                     onPressed: () {
-//                      Navigator.push(
-//                          context,
-//                          MaterialPageRoute(
-//                              builder: (context) => welcome_page()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
                     },
                   ),
                   title: Text('Home')),
@@ -202,7 +202,8 @@ class _BestDealsState extends State<BestDeals> {
                     color: Colors.redAccent,
                     textColor: Colors.white,
                     onPressed: () {
-                      Navigator.pushNamed(context, Category.id);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Category()));
                     },
                     child: Text(
                       'SHOP NOW',

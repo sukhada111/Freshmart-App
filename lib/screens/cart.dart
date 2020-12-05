@@ -1,27 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:freshmart/models/prod.dart';
 import 'package:freshmart/screens/BestDeals.dart';
 import 'package:freshmart/screens/aboutUs.dart';
-import 'package:freshmart/screens/cart.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/screens/home.dart';
 import 'package:freshmart/screens/myProfile.dart';
-import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
-import 'globals.dart' as globals;
+import 'package:freshmart/screens/welcome.dart';
 
-class Home extends StatefulWidget {
-  static const String id = 'Home';
+class Cart extends StatefulWidget {
+  final List<Product> _cart;
+
+  Cart(this._cart);
 
   @override
-  _HomeState createState() => _HomeState();
+  _CartState createState() => _CartState(this._cart);
 }
 
-class _HomeState extends State<Home> {
+class _CartState extends State<Cart> {
+  _CartState(this._cart);
+
+  List<Product> _cart;
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(title: Text('MY CART')),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -115,10 +121,8 @@ class _HomeState extends State<Home> {
                     size: 25,
                   ),
                   onPressed: () {
-//                      Navigator.push(
-//                          context,
-//                          MaterialPageRoute(
-//                              builder: (context) => welcome_page()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
                   },
                 ),
                 title: Text('Home')),
@@ -149,93 +153,56 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        appBar: AppBar(
-          title: Text('Freshmart', textAlign: TextAlign.center),
-          centerTitle: true,
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 16.0, top: 8.0),
-              child: GestureDetector(
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: <Widget>[
-                    Icon(
-                      Icons.shopping_cart,
-                      size: 36.0,
-                    ),
-                    if (globals.cartList.length > 0)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 2.0),
-                        child: CircleAvatar(
-                          radius: 8.0,
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          child: Text(
-                            globals.cartList.length.toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
+        body: ListView.builder(
+            itemCount: _cart.length,
+            itemBuilder: (context, index) {
+              var item = _cart[index];
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                child: SizedBox(
+                  width: 200,
+                  height: 100,
+                  child: Card(
+                    margin: EdgeInsets.fromLTRB(18.0, 10.0, 20.0, 0.0),
+                    elevation: 4.0,
+                    child: Center(
+                      child: ListTile(
+                        leading: SizedBox(
+                          width: 110,
+                          height: 410,
+                          child: Image.asset(
+                            'assets/images/${item.img}',
+                            fit: BoxFit.cover,
                           ),
                         ),
+                        title: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              Text('${item.name}, ${item.quantity}',
+                                  style: TextStyle(fontSize: 20)),
+                              Text('Price: ${item.price}',
+                                  style: TextStyle(color: Colors.black54)),
+                            ],
+                          ),
+                        ),
+                        trailing: GestureDetector(
+                            child: Icon(
+                              Icons.remove_circle,
+                              color: Colors.red,
+                            ),
+                            onTap: () {
+                              setState(() {
+                                _cart.remove(item);
+                              });
+                            }),
                       ),
-                  ],
+                    ),
+                  ),
                 ),
-                onTap: () {
-                  if (globals.cartList.isNotEmpty)
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Cart(globals.cartList),
-                      ),
-                    );
-                },
-              ),
-            ),
-          ],
-        ),
-        body: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Container(
-                    height: 200,
-                    child: Image(
-                      image: AssetImage("assets/images/headbanner.png"),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 150,
-                    child: Image(
-                      image: AssetImage("assets/images/discounts.jpg"),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      height: 150,
-                      child: Image(
-                        image: AssetImage("assets/images/category.png"),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        Category.id,
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+              );
+            }),
       ),
     );
   }

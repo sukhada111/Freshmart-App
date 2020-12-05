@@ -7,6 +7,7 @@ class ProdTile extends StatelessWidget {
   final Product prod;
   final String categor;
   ProdTile({this.prod, this.categor});
+  List<Product> _cartList = List<Product>();
 
   @override
   Widget build(BuildContext context) {

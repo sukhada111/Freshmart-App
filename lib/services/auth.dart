@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freshmart/models/prod.dart';
 import 'package:freshmart/models/user.dart';
 import 'package:freshmart/services/database.dart';
 

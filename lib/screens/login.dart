@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:freshmart/screens/category.dart';
+import 'package:freshmart/screens/home.dart';
 import 'package:freshmart/services/auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
@@ -149,11 +150,13 @@ class _LoginState extends State<Login> {
                       await _auth.signInWithEmailAndPassword(email, password);
                   if (result == null) {
                     setState(() {
+                      showSpinner = false;
                       error = 'Could not sign in with those credentials';
                     });
                   } else {
                     showSpinner = false;
-                    Navigator.pushNamed(context, Category.id);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
                   }
                 }
               },

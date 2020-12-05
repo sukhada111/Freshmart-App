@@ -4,20 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:freshmart/models/prod.dart';
 import 'package:freshmart/models/user.dart';
 import 'package:freshmart/screens/BestDeals.dart';
-import 'package:freshmart/screens/MyCart.dart';
+import 'package:freshmart/screens/aboutUs.dart';
+import 'package:freshmart/screens/cart.dart';
 import 'package:freshmart/screens/category.dart';
 import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
 import 'package:freshmart/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:freshmart/screens/prod_tile.dart';
+import 'globals.dart' as globals;
 
-class SingleProduct extends StatelessWidget {
+class SingleProduct extends StatefulWidget {
   static const String id = 'SingleProduct';
   final Product prod;
   final String prod_id;
   SingleProduct({this.prod, this.prod_id});
 
+  @override
+  _SingleProductState createState() => _SingleProductState();
+}
+
+class _SingleProductState extends State<SingleProduct> {
   final AuthService _auth = AuthService();
 
   @override
@@ -66,10 +74,8 @@ class SingleProduct extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    Category.id,
-                  );
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AboutUs()));
                 },
               ),
               ListTile(
@@ -82,10 +88,8 @@ class SingleProduct extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    BestDeals.id,
-                  );
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => BestDeals()));
                 },
               ),
               ListTile(
@@ -154,22 +158,50 @@ class SingleProduct extends StatelessWidget {
         appBar: AppBar(
           title: Text('Freshmart', textAlign: TextAlign.center),
           centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  BestDeals.id,
-                );
-              },
-              color: Colors.white,
-            )
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+              child: GestureDetector(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Icon(
+                      Icons.shopping_cart,
+                      size: 36.0,
+                    ),
+                    if (globals.cartList.length > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 2.0),
+                        child: CircleAvatar(
+                          radius: 8.0,
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          child: Text(
+                            globals.cartList.length.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                onTap: () {
+                  if (globals.cartList.isNotEmpty)
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Cart(globals.cartList),
+                      ),
+                    );
+                },
+              ),
+            ),
           ],
         ),
         body: ListView(
           children: [
-          Container(
+            Container(
               padding: EdgeInsets.all(39),
               child: Column(
                 children: [
@@ -183,7 +215,7 @@ class SingleProduct extends StatelessWidget {
                           color: Colors.lightBlue[50],
                         ),
                         child: Text(
-                          '${prod.seller}',
+                          '${widget.prod.seller}',
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
@@ -195,15 +227,16 @@ class SingleProduct extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          "${prod.name}, ${prod.quantity}",
+                          "${widget.prod.name}, ${widget.prod.quantity}",
                           style: TextStyle(
                               fontSize: 22,
                               color: Colors.grey[800],
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Rs. ${prod.price}',
-                          style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+                          'Rs. ${widget.prod.price}',
+                          style:
+                              TextStyle(fontSize: 20, color: Colors.grey[700]),
                         ),
                         Text(
                           "(Inclusive of all Taxes)",
@@ -219,7 +252,7 @@ class SingleProduct extends StatelessWidget {
                     width: 300,
                     height: 300,
                     child: Image(
-                      image: AssetImage("assets/images/${prod.img}"),
+                      image: AssetImage("assets/images/${widget.prod.img}"),
                     ),
                   ),
                   Container(
@@ -240,15 +273,11 @@ class SingleProduct extends StatelessWidget {
                       height: 50,
                       child: FlatButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MyCart(prod.seller,prod.name,prod.price,prod.quantity,prod.img)
-
-                          ),
-                          );
+                          setState(() {
+                            if (!(globals.cartList.contains(widget.prod)))
+                              globals.cartList.add(widget.prod);
+                          });
                         },
-
                         child: Text(
                           "ADD TO CART",
                           style: TextStyle(
@@ -263,10 +292,9 @@ class SingleProduct extends StatelessWidget {
                 ],
               ),
             ),
-      ],
+          ],
         ),
-        ),
-
+      ),
     );
   }
 }

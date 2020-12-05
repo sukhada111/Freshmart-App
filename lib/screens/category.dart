@@ -1,14 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:freshmart/models/prod.dart';
 import 'package:freshmart/screens/BestDeals.dart';
 import 'package:freshmart/screens/aboutUs.dart';
+import 'package:freshmart/screens/cart.dart';
 import 'package:freshmart/screens/home.dart';
 import 'package:freshmart/screens/login.dart';
 import 'package:freshmart/screens/myProfile.dart';
 import 'package:freshmart/screens/products.dart';
 import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
+import 'globals.dart' as globals;
 
 class Category extends StatefulWidget {
   static const String id = 'Category';
@@ -98,10 +101,8 @@ class _CategoryState extends State<Category> {
                   style: TextStyle(color: Colors.grey[700], fontSize: 19),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    BestDeals.id,
-                  );
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => BestDeals()));
                 },
               ),
               ListTile(
@@ -168,6 +169,46 @@ class _CategoryState extends State<Category> {
         appBar: AppBar(
           title: Text('Freshmart', textAlign: TextAlign.center),
           centerTitle: true,
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+              child: GestureDetector(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: <Widget>[
+                    Icon(
+                      Icons.shopping_cart,
+                      size: 36.0,
+                    ),
+                    if (globals.cartList.length > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 2.0),
+                        child: CircleAvatar(
+                          radius: 8.0,
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          child: Text(
+                            globals.cartList.length.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                onTap: () {
+                  if (globals.cartList.isNotEmpty)
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Cart(globals.cartList),
+                      ),
+                    );
+                },
+              ),
+            ),
+          ],
         ),
         body: Container(
           padding: EdgeInsets.fromLTRB(5.0, 70.0, 5.0, 2.0),
