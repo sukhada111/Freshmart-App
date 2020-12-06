@@ -154,7 +154,7 @@ class _HomeState extends State<Home> {
           centerTitle: true,
           actions: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+              padding: const EdgeInsets.only(top: 12.0, right: 8.0),
               child: GestureDetector(
                 child: Stack(
                   alignment: Alignment.topCenter,
@@ -193,48 +193,80 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        body: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Container(
-                    height: 200,
-                    child: Image(
-                      image: AssetImage("assets/images/headbanner.png"),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 150,
-                    child: Image(
-                      image: AssetImage("assets/images/discounts.jpg"),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      height: 150,
+        body: Padding(
+          padding: const EdgeInsets.all(9.0),
+          child: ListView(
+            children: [
+              Center(
+                  child: Text(
+                'Welcome to Freshmart!',
+                style: TextStyle(fontSize: 20),
+              )),
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 200,
                       child: Image(
-                        image: AssetImage("assets/images/category.png"),
+                        image: AssetImage("assets/images/headbanner.png"),
                         fit: BoxFit.fill,
                       ),
                     ),
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        Category.id,
-                      );
-                    },
-                  ),
-                ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 150,
+                      child: Image(
+                        image: AssetImage("assets/images/discounts.jpg"),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        height: 150,
+                        child: Image(
+                          image: AssetImage("assets/images/category.png"),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          Category.id,
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 10,
+                height: 30,
+              ),
+              ButtonTheme(
+                minWidth: 300,
+                height: 50,
+                child: RaisedButton(
+                  color: Colors.redAccent,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Category()));
+                  },
+                  child: Text(
+                    'SHOP NOW',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  padding: EdgeInsets.all(10),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.redAccent)),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

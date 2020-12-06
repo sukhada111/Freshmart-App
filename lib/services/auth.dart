@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freshmart/models/prod.dart';
 import 'package:freshmart/models/user.dart';
 import 'package:freshmart/services/database.dart';
+import 'package:freshmart/screens/globals.dart' as globals;
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -62,6 +63,7 @@ class AuthService {
   // sign out
   Future signOut() async {
     try {
+      globals.cartList.clear();
       return await _auth.signOut();
     } catch (error) {
       print(error.toString());

@@ -9,6 +9,8 @@ import 'package:freshmart/screens/welcome.dart';
 import 'package:freshmart/services/auth.dart';
 import 'package:freshmart/services/database.dart';
 import 'package:provider/provider.dart';
+import 'package:freshmart/screens/home.dart';
+import 'package:freshmart/screens/aboutUs.dart';
 
 class MyProfile extends StatefulWidget {
   static const String id = 'MyProfile';
@@ -73,10 +75,10 @@ class _MyProfileState extends State<MyProfile> {
                               TextStyle(color: Colors.grey[700], fontSize: 19),
                         ),
                         onTap: () {
-//                          Navigator.pushNamed(
-//                            context,
-//                            SingleProduct.id,
-//                          );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AboutUs()));
                         },
                       ),
                       ListTile(
@@ -126,10 +128,10 @@ class _MyProfileState extends State<MyProfile> {
                             size: 25,
                           ),
                           onPressed: () {
-//                      Navigator.push(
-//                          context,
-//                          MaterialPageRoute(
-//                              builder: (context) => welcome_page()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
                           },
                         ),
                         title: Text('Home')),
@@ -266,10 +268,10 @@ class _MyProfileState extends State<MyProfile> {
                       ),
                       onTap: () async {
                         await _auth.signOut();
-                        Navigator.pushNamed(
-                          context,
-                          welcome_page.id,
-                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => welcome_page()));
                       },
                     )
                   ],
